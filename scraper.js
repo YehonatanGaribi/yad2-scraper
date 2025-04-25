@@ -48,6 +48,10 @@ const checkIfHasNewItem = async (imgUrls, topic) => {
         savedUrls = require(filePath);
     } catch (e) {
         if (e.code === "MODULE_NOT_FOUND") {
+			if (fs.existsSync(directory)) {
+				fs.rmdirSync(directory, { recursive: true });  // Ensure all files inside are removed
+				console.log('Directory removed');
+			}
             fs.mkdirSync('data');
             fs.writeFileSync(filePath, '[]');
         } else {
