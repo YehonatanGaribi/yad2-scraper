@@ -42,13 +42,13 @@ const scrapeItemsAndExtractImgUrls = async (url) => {
 }
 
 const checkIfHasNewItem = async (imgUrls, topic) => {
-    const filePath = `./data/${topic}.json`;
+    const filePath = `./results/${topic}.json`;
     let savedUrls = [];
     try {
         savedUrls = require(filePath);
     } catch (e) {
         if (e.code === "MODULE_NOT_FOUND") {
-            fs.mkdirSync('data');
+            fs.mkdirSync('results');
             fs.writeFileSync(filePath, '[]');
         } else {
             console.log(e);
